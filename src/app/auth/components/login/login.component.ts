@@ -30,13 +30,20 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       const value = this.form.value;
       this.authService.login(value.email, value.password)
-      .then(() => {
-        this.router.navigate(['/admin']);
-      })
-      .catch(() => {
-        alert('no es valido');
-      });
+        .then(() => {
+          this.router.navigate(['/admin']);
+        })
+        .catch(() => {
+          alert('no es valido');
+        });
     }
+  }
+
+  loginRest() {
+    this.authService.loginRestApi('selvinmedina0016@gmail.com', '123456')
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   private buildForm() {
